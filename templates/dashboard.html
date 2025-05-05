@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>診断結果一覧</title>
+</head>
+<body>
+    <h1>診断結果一覧</h1>
+    {% for item in items %}
+        <div style="margin-bottom: 20px;">
+            <img src="/uploads/{{ item.image }}" width="200"><br>
+            <strong>{{ item.diagnosis }}</strong>
+        </div>
+    {% else %}
+        <p>まだ結果がありません。</p>
+    {% endfor %}
+</body>
+</html>
