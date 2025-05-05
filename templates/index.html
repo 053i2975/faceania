@@ -5,14 +5,19 @@
 </head>
 <body>
     <h1>顔写真をアップして診断しよう</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="ref" value="{{ ref }}">
-        <input type="file" name="photo" required><br><br>
-        <label>
-            <input type="checkbox" name="share" checked>
-            診断結果をこのサイトを紹介してくれた人に共有する
-        </label><br><br>
-        <button type="submit">診断する</button>
+    
+    <p>あなた専用のリンクを生成します。お友達に送って診断を受けてもらいましょう！</p>
+    
+    <!-- リファラー（AのIDなど）を入力 -->
+    <form action="/" method="GET">
+        <label for="ref">あなたのIDを入力してください：</label>
+        <input type="text" id="ref" name="ref" required>
+        <button type="submit">リンクを生成</button>
     </form>
+
+    {% if ref %}
+        <h2>このリンクをお友達に送ってください！</h2>
+        <p><a href="{{ url_for('upload') }}?ref={{ ref }}" target="_blank">{{ url_for('upload') }}?ref={{ ref }}</a></p>
+    {% endif %}
 </body>
 </html>

@@ -26,7 +26,7 @@ def save_result(ref_id, image_path, diagnosis):
 
 @app.route('/')
 def index():
-    ref = request.args.get('ref', 'unknown')
+    ref = request.args.get('ref', None)
     return render_template('index.html', ref=ref)
 
 @app.route('/upload', methods=['POST'])
@@ -48,6 +48,9 @@ def upload():
         return render_template('result.html', diagnosis=diagnosis)
 
     return "写真がありません", 400
+
+
+
 
 @app.route('/dashboard/<ref_id>')
 def dashboard(ref_id):
